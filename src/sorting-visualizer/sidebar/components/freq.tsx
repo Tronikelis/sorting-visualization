@@ -10,7 +10,7 @@ export default function FreqChanger() {
 
     return (
         <Box w="100%">
-            <Text fontSize="2xl">
+            <Text fontSize="xl">
                 Frequency: {" "} {freq + " ms"}
             </Text>
             <Slider

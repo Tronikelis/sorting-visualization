@@ -1,1 +1,1 @@
-export { useSortVis } from "./useSortVis";
+export { useSortVis } from "./use-sort-vis";

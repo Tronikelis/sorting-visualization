@@ -24,6 +24,7 @@ export const useSortVis = (props: useBubbleSortProps) => {
 
     const typeRef = useRef(type);
     const freqRef = useRef(freq);
+    const arrayRef = useRef(array);
 
     const startSorting = useCallback(() => {
         const bubbleSort = () => {
@@ -35,6 +36,7 @@ export const useSortVis = (props: useBubbleSortProps) => {
                     for (let r = 0; r < array.length - l - 1; r++) {
                         // if the sorting has changed then return out of this instance
                         if (type !== typeRef.current) return;
+                        if (array.length !== arrayRef.current.length) return;
 
                         if (array[r] > array[r + 1]) {
                             swap(array, r, r + 1);
@@ -90,7 +92,9 @@ export const useSortVis = (props: useBubbleSortProps) => {
 
                 for (var lim = len; lim > 1; lim = Math.floor((lim + 1) / 2)) {
                     for (var j = 0, k = 0; k < lim; j++, k += 2) {
+                        // if the sorting has changed then return out of this instance
                         if (type !== typeRef.current) return;
+                        if (array.length !== arrayRef.current.length) return;
 
                         work[j] = merge(work[k] as number[], work[k + 1] as number[]);
 
@@ -131,6 +135,9 @@ export const useSortVis = (props: useBubbleSortProps) => {
     useEffect(() => {
         typeRef.current = type;
     }, [type]);
+    useEffect(() => {
+        arrayRef.current = array;
+    }, [array]);
 
     return {
         left,

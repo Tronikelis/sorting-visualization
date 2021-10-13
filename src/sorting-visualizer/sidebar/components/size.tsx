@@ -13,7 +13,7 @@ export default function SizeChanger() {
 
     return (
         <Box w="100%">
-            <Text fontSize="2xl">
+            <Text fontSize="xl">
                 Array size: {" "} {size}
             </Text>
             <Slider
