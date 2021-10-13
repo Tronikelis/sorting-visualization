@@ -1,1 +1,1 @@
-export { useBubbleSort } from "./useBubbleSort";
+export { useSortVis } from "./useSortVis";

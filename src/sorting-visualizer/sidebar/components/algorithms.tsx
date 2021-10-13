@@ -16,7 +16,7 @@ export default function SelectAlgo() {
                 {algorithms.map((val, i) => (
                     <Box p="1" key={i}>
                         <Button
-                            variant="ghost"
+                            variant="solid"
                             key={i}
                             onClick={() => setSelected(val as Algorithms)}
                         >
@@ -25,7 +25,7 @@ export default function SelectAlgo() {
                     </Box>
                 ))}
             </Flex>
-            <Text mt="5" fontSize="xl" align="center">
+            <Text mt="2" fontSize="xl" align="center">
                 Selected: {selected}
             </Text>
         </>

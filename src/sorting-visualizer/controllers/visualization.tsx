@@ -15,7 +15,7 @@ export default function VisController(props: VisControllerProps) {
                     key={i}
                     w="100%"
                     h={(val * 100).toFixed(3) + "%"}
-                    bgColor={i === leftIdx || i === rightIdx ? "#4c566a" : "#2e3440"}
+                    bgColor={i === leftIdx || i === rightIdx ? "#5e81ac" : "#2e3440"}
                 />
             ))}
         </Flex>

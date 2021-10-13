@@ -23,11 +23,13 @@ interface Store {
         selected: Algorithms
         array: number[];
         freq: number;
+        size: number;
     }
     actions: {
         setSelected: (algorithm: Algorithms) => void;
-        setArray: (fn: (arr: number[]) => number[]) => void;
-        setFreq: (freq: number) => void
+        setArray: (array: number[]) => void;
+        setFreq: (freq: number) => void;
+        setSize: (size: number) => void;
     }
 }
 
@@ -35,18 +37,22 @@ export const useStore = create<Store>(
     immer(set => ({
         state: {
             selected: "bubbleSort",
-            array: new Array(50).fill(0).map(() => Math.random()),
+            array: new Array(100).fill(0).map(() => Math.random()),
             freq: 20,
+            size: 100,
         },
         actions: {
-            setArray: fn => set(store => {
-                store.state.array = fn(store.state.array);
+            setArray: array => set(store => {
+                store.state.array = array
             }),
             setSelected: algorithm => set(store => {
                 store.state.selected = algorithm;
             }),
             setFreq: freq => set(store => {
                 store.state.freq = freq;
+            }),
+            setSize: size => set(store => {
+                store.state.size = size;
             }),
         },
     }))

@@ -1,13 +1,18 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
-import { SelectAlgo, FreqChanger } from "./components";
+import { SelectAlgo, FreqChanger, SizeChanger } from "./components";
 
 export default function SideBar() {
     return (
-        <Box w="100%" h="100%" bgColor="#d8dee9" p="10">
+        <Box w="100%" h="100%" bgColor="#4c566a" p="10">
             <SelectAlgo />
-            <Box mt="10" />
+
+            <Text fontSize="2xl" align="center" mt="5">
+                Controls:
+            </Text>
+            
             <FreqChanger />
+            <SizeChanger />
         </Box>
     );
 }

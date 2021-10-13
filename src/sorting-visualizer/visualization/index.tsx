@@ -3,13 +3,14 @@ import { useEffect } from "react";
 
 import { useStore } from "../store";
 import { VisController } from "../controllers";
-import { useBubbleSort } from "../hooks";
+import { useSortVis } from "../hooks";
 
 export default function Visualization() {
     const array = useStore(store => store.state.array);
+    const type = useStore(store => store.state.selected);
     const freq = useStore(store => store.state.freq);
 
-    const { left, start, right, progress } = useBubbleSort({ array, freq });
+    const { left, progress, right, start } = useSortVis({ array, freq, type });
 
     useEffect(() => {
         start();
