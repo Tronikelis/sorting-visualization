@@ -45,7 +45,6 @@ export const useSortVis = (props: useBubbleSortProps) => {
 
                         setLeft(l);
                         setRight(r);
-
                         await sleep(freqRef.current);
                     }
                 }
@@ -98,11 +97,10 @@ export const useSortVis = (props: useBubbleSortProps) => {
 
                         work[j] = merge(work[k] as number[], work[k + 1] as number[]);
 
-                        await sleep(freqRef.current * 2);
                         setProgress(work.reduce((prev, cur) => [...prev, ...cur]) as number[]);
-
                         setLeft(k);
                         setRight(j);
+                        await sleep(freqRef.current * 2);
                     }
                     work[j] = [];
                 }
