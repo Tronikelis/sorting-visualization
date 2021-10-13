@@ -20,7 +20,7 @@ export const useBubbleSort = (props: useBubbleSortProps) => {
 
     const freqRef = useRef(freq);
 
-    const startSorting = useCallback(async () => {
+    const startSorting = useCallback(() => {
         const sort = async (array: number[]) => {
             for (let l = 0; l < array.length; l++) {
                 for (let r = 0; r < array.length - l - 1; r++) {
