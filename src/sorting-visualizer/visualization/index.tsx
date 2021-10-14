@@ -14,7 +14,7 @@ export default function Visualization() {
 
     useEffect(() => {
         start();
-    }, [start]);
+    }, [start, type]);
 
     return (
         <Flex bg="#eceff4" w="100%" h="100%" p="10">

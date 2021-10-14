@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 
 import { Algorithms } from "../store";
-import { bubbleSort, mergeSort } from "../controllers";
+import { bubbleSort, mergeSort, quickSort } from "../controllers";
 
 const sleep = (ms: number) => {
     return new Promise(resolve => {
@@ -50,8 +50,8 @@ export const useSortVis = (props: useSortVisProps) => {
             case "mergeSort":
                 mergeSort({ array, onIteration });
                 break;
-            case "quicksort":
-                // quickSort();
+            case "quickSort":
+                quickSort({ array, onIteration });
                 break;
         }
     }, [array, type]);

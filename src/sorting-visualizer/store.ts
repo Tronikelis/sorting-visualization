@@ -16,7 +16,7 @@ const immer =
             api
         );
 
-export type Algorithms = "quicksort" | "mergeSort" | "bubbleSort";
+export type Algorithms = "quickSort" | "mergeSort" | "bubbleSort";
 
 interface Store {
     state: {
@@ -36,7 +36,7 @@ interface Store {
 export const useStore = create<Store>(
     immer(set => ({
         state: {
-            selected: "mergeSort",
+            selected: "quickSort",
             array: new Array(100).fill(0).map(() => Math.random()),
             freq: 20,
             size: 100,

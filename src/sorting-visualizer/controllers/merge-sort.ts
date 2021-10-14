@@ -11,6 +11,7 @@ interface MergeSortArgs {
     }) => Promise<void>;
 }
 
+// https://stackoverflow.com/questions/64609030/is-this-iterative-implementation-of-merge-sort-correct
 export const mergeSort = async ({ array: immutable, onIteration }: MergeSortArgs) => {
     let array = klona(immutable) as any as number[][];
 
@@ -42,7 +43,7 @@ export const mergeSort = async ({ array: immutable, onIteration }: MergeSortArgs
 
             await onIteration({
                 left: i,
-                right: j + i + b.length,
+                right: j + a.length,
                 progress: original.reduce((prev, cur) => [...prev, ...cur]),
             });
         }
