@@ -14,7 +14,7 @@ export default function VisController(props: VisControllerProps) {
                 <Box
                     key={i}
                     w="100%"
-                    h={(val * 100).toFixed(3) + "%"}
+                    h={val + "%"}
                     bgColor={i === leftIdx || i === rightIdx ? "#5e81ac" : "#2e3440"}
                 />
             ))}

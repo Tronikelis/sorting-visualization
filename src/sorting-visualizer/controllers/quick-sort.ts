@@ -13,72 +13,62 @@ interface QuickSortArgs {
 
 // https://learnersbucket.com/examples/algorithms/quick-sort-iterative/
 export const quickSort = async ({ array, onIteration }: QuickSortArgs) => {
-    const iterativeQuickSort = async (arr: number[]) => {
-        const swap = (arr: number[], left: number, right: number) => {
-            [arr[left], arr[right]] = [arr[right], arr[left]];
-        };
+    let newArr = klona(array);
+    sort(newArr, 0, newArr.length - 1);
 
-        const partitionHigh = async (arr: number[], low: number, high: number) => {
-            //Pick the first element as pivot
-            let pivot = arr[high];
-            let i = low;
+    async function sort(array: number[], left: number, right: number) {
+        // if it is less than one then sorting is useless
+        if (array.length <= 1) return;
 
-            //Partition the array into two parts using the pivot
-            for (let j = low; j < high; j++) {
-                if (arr[j] <= pivot) {
-                    swap(arr, i, j);
-                    i++;
-                }
-                // return if this isn't selected
-                const { size, selected } = useStore.getState().state;
-                if (selected !== "quickSort" || size !== array.length) return;
+        // partition the array and get the (middle point where the partition stopped)
+        const mid = await partition(array, left, right);
+        if (!mid) return;
 
-                await onIteration({
-                    left: i,
-                    right: j,
-                    progress: arr,
-                });
+        // sort the left part, without the pivot
+        if (left < mid - 1) await sort(array, left, mid - 1);
+        // sort the right part, with the pivot
+        if (right > mid) await sort(array, mid, right);
+    }
+
+    function swap(array: number[], left: number, right: number) {
+        [array[left], array[right]] = [array[right], array[left]];
+    }
+
+    async function partition(array: number[], left: number, right: number) {
+        // take the pivot of the array chunk
+        const pivot = array[Math.floor((left + right) / 2)];
+        // console.log({ pivot, left, right });
+        let l = left;
+        let r = right;
+
+        // while left side has bigger numbers than the right side
+        while (l <= r) {
+            // add one to the left if we do not need to swap it
+            while (array[l] < pivot) {
+                l++;
             }
-
-            swap(arr, i, high);
+            // minus one to the right if we do no need to swap it
+            while (array[r] > pivot) {
+                r--;
+            }
+            // if left side currently has a bigger number than the right then swap it
+            if (l <= r) {
+                swap(array, l, r);
+                l++;
+                r--;
+            }
 
             await onIteration({
-                left: i,
-                right: high,
-                progress: arr,
+                progress: array,
+                left: l,
+                right: r,
             });
-            //Return the pivot index
-            return i;
-        };
-        //Stack for storing start and end index
-        let stack: any = [];
 
-        //Get the start and end index
-        let start = 0;
-        let end = arr.length - 1;
-
-        //Push start and end index in the stack
-        stack.push({ x: start, y: end });
-
-        //Iterate the stack
-        while (stack.length) {
-            //Get the start and end from the stack
-            const { x, y } = stack.shift();
-
-            //Partition the array along the pivot
-            const PI = await partitionHigh(arr, x, y);
-            if (!PI) return;
-
-            //Push sub array with less elements than pivot into the stack
-            if (PI - 1 > x) {
-                stack.push({ x: x, y: PI - 1 });
-            }
-
-            //Push sub array with greater elements than pivot into the stack
-            if (PI + 1 < y) {
-                stack.push({ x: PI + 1, y: y });
-            }
+            // return if this isn't selected
+            const { size, selected } = useStore.getState().state;
+            if (selected !== "quickSort" || size !== array.length) return;
         }
-    };
-    iterativeQuickSort(klona(array));
+        // return a new index (middle part usually)
+        return l;
+    }
 };

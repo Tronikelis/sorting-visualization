@@ -8,7 +8,7 @@ export default function SizeChanger() {
     
     const onChange = (val: number) => {
         setSize(val);
-        setArray(new Array(val).fill(0).map(() => Math.random()));
+        setArray(new Array(val).fill(0).map(() => Math.random() * 100));
     };
 
     return (

@@ -37,7 +37,7 @@ export const useStore = create<Store>(
     immer(set => ({
         state: {
             selected: "quickSort",
-            array: new Array(100).fill(0).map(() => Math.random()),
+            array: new Array(100).fill(0).map(() => Math.random() * 100),
             freq: 20,
             size: 100,
         },
