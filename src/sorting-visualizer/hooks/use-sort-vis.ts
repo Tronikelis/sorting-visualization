@@ -22,9 +22,7 @@ export const useSortVis = (props: useSortVisProps) => {
     const [right, setRight] = useState(undefined as any as number);
     const [progress, setProgress] = useState(array);
 
-    const typeRef = useRef(type);
     const freqRef = useRef(freq);
-    const arrayRef = useRef(array);
 
     const startSorting = useCallback(() => {
         const onIteration = async ({
@@ -63,12 +61,6 @@ export const useSortVis = (props: useSortVisProps) => {
     useEffect(() => {
         freqRef.current = freq;
     }, [freq]);
-    useEffect(() => {
-        typeRef.current = type;
-    }, [type]);
-    useEffect(() => {
-        arrayRef.current = array;
-    }, [array]);
 
     return {
         left,
